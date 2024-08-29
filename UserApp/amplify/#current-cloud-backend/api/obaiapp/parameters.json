@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "obaiapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authobaiapp882c3e50882c3e50",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2023-12-29T21:50:57.335Z"
+}

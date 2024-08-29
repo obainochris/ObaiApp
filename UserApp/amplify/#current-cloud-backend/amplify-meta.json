@@ -1,0 +1,139 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-obaiapp-dev-220954-authRole",
+      "UnauthRoleArn": "arn:aws:iam::077586326022:role/amplify-obaiapp-dev-220954-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::077586326022:role/amplify-obaiapp-dev-220954-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-obaiapp-dev-220954-deployment",
+      "UnauthRoleName": "amplify-obaiapp-dev-220954-unauthRole",
+      "StackName": "amplify-obaiapp-dev-220954",
+      "StackId": "arn:aws:cloudformation:us-west-1:077586326022:stack/amplify-obaiapp-dev-220954/27d98c00-a433-11ee-8361-02802880a3f9",
+      "AmplifyAppId": "d2j4wgk381bhc4",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-obaiapp-dev-220954-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    }
+  },
+  "function": {
+    "obaiapp882c3e50882c3e50PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2023-12-29T22:01:39.121Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-12-29T22:02:52.855Z",
+      "distZipFilename": "obaiapp882c3e50882c3e50PostConfirmation-642b4464786854326230-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-obaiapp-dev-220954-deployment",
+        "s3Key": "amplify-builds/obaiapp882c3e50882c3e50PostConfirmation-642b4464786854326230-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-obaiapp-dev-220954-deployment/amplify-cfn-templates/function/obaiapp882c3e50882c3e50PostConfirmation-cloudformation-template.json",
+        "logicalId": "functionobaiapp882c3e50882c3e50PostConfirmation"
+      },
+      "lastPushTimeStamp": "2023-12-29T22:08:23.378Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::077586326022:role/obaiapp882c3e50882c3e50PostConfirmation-dev",
+        "Region": "us-west-1",
+        "Arn": "arn:aws:lambda:us-west-1:077586326022:function:obaiapp882c3e50882c3e50PostConfirmation-dev",
+        "Name": "obaiapp882c3e50882c3e50PostConfirmation-dev",
+        "LambdaExecutionRole": "obaiapp882c3e50882c3e50PostConfirmation-dev"
+      },
+      "lastPushDirHash": "pc8hg8vuylZZMO6SgObop3mqJjI="
+    }
+  },
+  "auth": {
+    "obaiapp882c3e50882c3e50": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "obaiapp882c3e50882c3e50PostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-obaiapp-dev-220954-deployment/amplify-cfn-templates/auth/obaiapp882c3e50882c3e50-cloudformation-template.json",
+        "logicalId": "authobaiapp882c3e50882c3e50"
+      },
+      "lastPushTimeStamp": "2023-12-29T22:08:23.378Z",
+      "output": {
+        "UserPoolId": "us-west-1_rzpF8nO33",
+        "AppClientIDWeb": "3q41d8avqsngads8collk1rflf",
+        "AppClientID": "74pfoaf2vv5l9vsbu3gl2jof2h",
+        "IdentityPoolId": "us-west-1:fe380273-5b9b-4ee0-ae9a-b64abaa4bdd8",
+        "UserPoolArn": "arn:aws:cognito-idp:us-west-1:077586326022:userpool/us-west-1_rzpF8nO33",
+        "IdentityPoolName": "obaiapp882c3e50_identitypool_882c3e50__dev",
+        "UserPoolName": "obaiapp882c3e50_userpool_882c3e50"
+      },
+      "lastPushDirHash": "fZyry67WwUMmG/kxLbOGdM5PBkU="
+    }
+  },
+  "api": {
+    "obaiapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "obaiapp882c3e50882c3e50"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authobaiapp882c3e50882c3e50"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 7,
+                "apiKeyExpirationDate": "2024-01-05T21:59:56.840Z",
+                "description": "amplify update api"
+              }
+            }
+          ]
+        },
+        "GraphQLAPIIdOutput": "c54cbvjmmffqbpg5jwg3hdcqo4",
+        "GraphQLAPIEndpointOutput": "https://m55bsy433nagxc2xf2wvruhkmi.appsync-api.us-west-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-wdkpdhlbobcojnb6t34lrh3swm"
+      },
+      "lastPushTimeStamp": "2023-12-29T22:08:23.378Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-obaiapp-dev-220954-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiobaiapp"
+      },
+      "lastPushDirHash": "s0RbCXs2Czd9CU+IVNU9f96Gxsg="
+    }
+  }
+}
