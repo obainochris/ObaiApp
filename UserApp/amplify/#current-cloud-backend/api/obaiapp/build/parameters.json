@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "obaiapp",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authobaiapp882c3e50882c3e50",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "amplify-obaiapp-dev-220954-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/ac926a059bded2d371b8e7081557317dce5e7a3b"
+}
